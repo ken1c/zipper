@@ -52,33 +52,38 @@ class minHeap {
     }
 
     public void huffmanTree() {
-        for (int i = 1; i < arr.length; i++) {
-            //create parent node
-            createParent(arr[i-1], arr[i]);
-            //delete two children from heap 
-            deleteTwoChild();
-            //insert new parent into heap
+        if (i==1) {
+            return;
         }
+        Node left = extractMin();
+        Node right = extractMin();
+        Node par = new Node(left.frequency+right.frequency, '\0');
+
+        par.lChild = left;
+        par.rChild = right;
+
+        Insertion(par);
+        huffmanTree();
     }
 
-    public void createParent(Node n1, Node n2) {
-        n = new Node(n1.frequency+n2.frequency, (char)i); //some garbage charecter
-    }
-
-    public void deleteTwoChild() {
+    public Node extractMin() {
         
+        return n;
     }
 }
 
 public class App 
 {
     public static void main(String[] args) {
-        minHeap m = new minHeap(5);
-        m.Insertion(m.new Node(10, 'a'));
+        minHeap m = new minHeap(6);
+        m.Insertion(m.new Node(13, 'a'));
         m.Insertion(m.new Node(12, 'b'));
         m.Insertion(m.new Node(5, 'c'));
-        m.Insertion(m.new Node(3, 'd'));
-        m.Insertion(m.new Node(18, 'e'));
+        m.Insertion(m.new Node(9, 'd'));
+        m.Insertion(m.new Node(16, 'e'));
+        m.Insertion(m.new Node(45, 'e'));
         m.PrintHeap();
+        m.huffmanTree();
+        // m.PrintHeap();
     }
 }
